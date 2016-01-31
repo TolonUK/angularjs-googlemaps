@@ -1,3 +1,4 @@
+/* global GoogleMapsLoader */
 'use strict';
 
 /**
@@ -9,9 +10,14 @@
  */
 angular.module('srcApp')
   .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+
+    GoogleMapsLoader.load(function (google) {
+      var mapOptions = {
+        zoom: 11,
+        center: new google.maps.LatLng(54.5767, -1.2355)
+      };
+
+      new google.maps.Map(document.getElementById('map'), mapOptions);
+    });
+
   });
